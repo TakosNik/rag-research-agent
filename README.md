@@ -26,7 +26,4 @@ uv run ruff check
 uv run ruff format --check
 ```
 
-## Security
 
-This is a public repository. Never commit real company data, secrets or
-credentials. Keep them in `.env` (ignored by git).
