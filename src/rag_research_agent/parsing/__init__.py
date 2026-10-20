@@ -1,6 +1,12 @@
 """Parsing turns a SourceDocument's raw bytes into plain text."""
 
 from rag_research_agent.parsing.base import UnsupportedFileTypeError, extract_text
+from rag_research_agent.parsing.docx import DocxParsingError
 from rag_research_agent.parsing.pdf import PdfParsingError
 
-__all__ = ["PdfParsingError", "UnsupportedFileTypeError", "extract_text"]
+__all__ = [
+    "DocxParsingError",
+    "PdfParsingError",
+    "UnsupportedFileTypeError",
+    "extract_text",
+]
