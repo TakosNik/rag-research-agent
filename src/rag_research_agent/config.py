@@ -11,14 +11,21 @@ class Settings(BaseSettings):
         env_file=".env",
         env_file_encoding="utf-8",
         extra="ignore",
+        # Treat empty values (e.g. "S3_ENDPOINT_URL=") as not set, so defaults apply
+        env_ignore_empty=True,
     )
 
-    # AWS S3 (documents)
+    # S3-compatible storage (documents): AWS S3, Cloudflare R2, Backblaze B2, Wasabi, MinIO, ...
+    # Endpoint URL of the storage service; None means AWS S3
+    s3_endpoint_url: str | None = None
+    s3_region: str | None = None
     s3_bucket: str | None = None
+    # Optional folder inside the bucket to read from
     s3_prefix: str | None = None
-    aws_region: str | None = None
-    aws_access_key_id: str | None = None
-    aws_secret_access_key: SecretStr | None = None
+    s3_access_key_id: str | None = None
+    s3_secret_access_key: SecretStr | None = None
+    # Use bucket-in-path URLs (needed by some self-hosted services like MinIO)
+    s3_force_path_style: bool = False
 
     # Jira
     jira_base_url: str | None = None
