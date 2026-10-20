@@ -3,6 +3,7 @@
 from collections.abc import Callable
 
 from rag_research_agent.models import SourceDocument
+from rag_research_agent.parsing.pdf import parse_pdf
 from rag_research_agent.parsing.text import parse_text
 
 
@@ -21,6 +22,7 @@ Parser = Callable[[bytes], str]
 PARSERS: dict[str, Parser] = {
     "text/plain": parse_text,
     "text/markdown": parse_text,
+    "application/pdf": parse_pdf,
 }
 
 
