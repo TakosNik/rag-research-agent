@@ -40,12 +40,14 @@ class Settings(BaseSettings):
     # SearXNG web search
     searxng_base_url: str | None = None
 
-    # LLM and embedding provider (provider not decided yet)
+    # LLM provider (not decided yet)
     llm_provider: str | None = None
     llm_model: str | None = None
     llm_api_key: SecretStr | None = None
     llm_base_url: str | None = None
-    embedding_provider: str | None = None
-    embedding_model: str | None = None
+
+    # Embedding provider: "fake" (tests/offline, no meaning) or "fastembed" (local model)
+    embedding_provider: str = "fake"
+    embedding_model: str = "BAAI/bge-small-en-v1.5"
     embedding_api_key: SecretStr | None = None
     embedding_base_url: str | None = None

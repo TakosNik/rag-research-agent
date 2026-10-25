@@ -5,6 +5,7 @@ description = "RAG and research agent over company knowledge sources."
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
+    "fastembed>=0.9.1",
     "pydantic-settings>=2.16.0",
     "pypdf>=6.21.1",
     "python-docx>=1.2.0",
@@ -23,6 +24,11 @@ dev = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+# Integration tests need the network or large downloads; run with: uv run pytest -m integration
+addopts = "-m 'not integration'"
+markers = [
+    "integration: slow tests that use real services or models (skipped by default)",
+]
 
 [tool.ruff]
 line-length = 100
