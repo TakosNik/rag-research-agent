@@ -45,3 +45,12 @@ class Chunk(BaseModel):
     text: str
     # Extra details copied from the document; empty by default
     metadata: dict[str, Any] = Field(default_factory=dict)
+
+
+class SearchResult(BaseModel):
+    """One chunk found by a search, with how well it matched the question."""
+
+    # The matching chunk
+    chunk: Chunk
+    # Similarity to the question; higher means a better match
+    score: float
