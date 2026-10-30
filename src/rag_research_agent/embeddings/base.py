@@ -25,6 +25,11 @@ class Embedder(ABC):
     def dimensions(self) -> int:
         """Length of every vector this embedder returns."""
 
+    @property
+    @abstractmethod
+    def model_name(self) -> str:
+        """Name of the model that makes the vectors, so stores never mix two models."""
+
     @abstractmethod
     def embed_documents(self, texts: list[str]) -> list[list[float]]:
         """Return one vector per text, in the same order, for storing and searching.

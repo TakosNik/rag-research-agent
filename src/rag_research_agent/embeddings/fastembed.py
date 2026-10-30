@@ -20,8 +20,12 @@ class FastEmbedEmbedder(Embedder):
     """
 
     def __init__(self, model_name: str = DEFAULT_MODEL):
-        self.model_name = model_name
+        self._model_name = model_name
         self._model: TextEmbedding | None = None
+
+    @property
+    def model_name(self) -> str:
+        return self._model_name
 
     @property
     def dimensions(self) -> int:
@@ -43,5 +47,5 @@ class FastEmbedEmbedder(Embedder):
             # Imported here so importing this module doesn't load FastEmbed either
             from fastembed import TextEmbedding
 
-            self._model = TextEmbedding(model_name=self.model_name)
+            self._model = TextEmbedding(model_name=self._model_name)
         return self._model

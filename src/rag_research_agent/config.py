@@ -52,6 +52,10 @@ class Settings(BaseSettings):
     embedding_api_key: SecretStr | None = None
     embedding_base_url: str | None = None
 
+    # Where chunks and vectors are kept: "pgvector" (Postgres, default) or
+    # "memory" (lost when the program exits; tests/demos only)
+    vector_store: str = "pgvector"
+
     # Postgres + pgvector vector store. Contains the password, so it is secret.
     # The default matches the dev database in docker-compose.yml.
     database_url: SecretStr = SecretStr("postgresql://rag:rag@localhost:5432/rag")

@@ -30,6 +30,10 @@ class FakeEmbedder(Embedder):
     def dimensions(self) -> int:
         return self._dimensions
 
+    @property
+    def model_name(self) -> str:
+        return "fake"
+
     def embed_documents(self, texts: list[str]) -> list[list[float]]:
         return [self._embed(text) for text in texts]
 
